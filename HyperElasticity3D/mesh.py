@@ -69,12 +69,12 @@ class MeshHyperElasticity3D:
         config.update("jax_enable_x64", True)
 
         params = {
-            "u0": jnp.array(self.params["u0"], dtype=jnp.float64),
-            "dofsMinim": jnp.array(self.params["dofsMinim"], dtype=jnp.int32),
-            "elems2nodes": jnp.array(self.params["elems2nodes"], dtype=jnp.int32),
-            "dphix": jnp.array(self.params["dphix"], dtype=jnp.float64),
-            "dphiy": jnp.array(self.params["dphiy"], dtype=jnp.float64),
-            "dphiz": jnp.array(self.params["dphiz"], dtype=jnp.float64),
+            "u_0": jnp.array(self.params["u0"], dtype=jnp.float64),
+            "freedofs": jnp.array(self.params["dofsMinim"], dtype=jnp.int32),
+            "elems": jnp.array(self.params["elems2nodes"], dtype=jnp.int32),
+            "dvx": jnp.array(self.params["dphix"], dtype=jnp.float64),
+            "dvy": jnp.array(self.params["dphiy"], dtype=jnp.float64),
+            "dvz": jnp.array(self.params["dphiz"], dtype=jnp.float64),
             "vol": jnp.array(self.params["vol"], dtype=jnp.float64),
             "C1": float(self.params["C1"]),
             "D1": float(self.params["D1"]),

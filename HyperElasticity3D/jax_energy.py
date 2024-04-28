@@ -4,26 +4,27 @@ from jax import config
 config.update("jax_enable_x64", True)
 
 
-def energy_jax(u, u0, dofsMinim, elems2nodes, dphix, dphiy, dphiz, vol, C1, D1):
-    v = u0.at[dofsMinim].set(u)
-    vx = v[0::3][elems2nodes]
-    vy = v[1::3][elems2nodes]
-    vz = v[2::3][elems2nodes]
+def J(u, u_0, freedofs, elems, dvx, dvy, dvz, vol, C1, D1):
+    v = u_0.at[freedofs].set(u)
+    vx_elem = v[0::3][elems]
+    vy_elem = v[1::3][elems]
+    vz_elem = v[2::3][elems]
 
-    G11 = jnp.sum(vx * dphix, axis=1)
-    G12 = jnp.sum(vx * dphiy, axis=1)
-    G13 = jnp.sum(vx * dphiz, axis=1)
-    G21 = jnp.sum(vy * dphix, axis=1)
-    G22 = jnp.sum(vy * dphiy, axis=1)
-    G23 = jnp.sum(vy * dphiz, axis=1)
-    G31 = jnp.sum(vz * dphix, axis=1)
-    G32 = jnp.sum(vz * dphiy, axis=1)
-    G33 = jnp.sum(vz * dphiz, axis=1)
+    F11 = jnp.sum(vx_elem * dvx, axis=1)
+    F12 = jnp.sum(vx_elem * dvy, axis=1)
+    F13 = jnp.sum(vx_elem * dvz, axis=1)
+    F21 = jnp.sum(vy_elem * dvx, axis=1)
+    F22 = jnp.sum(vy_elem * dvy, axis=1)
+    F23 = jnp.sum(vy_elem * dvz, axis=1)
+    F31 = jnp.sum(vz_elem * dvx, axis=1)
+    F32 = jnp.sum(vz_elem * dvy, axis=1)
+    F33 = jnp.sum(vz_elem * dvz, axis=1)
 
-    I1 = (G11**2 + G12**2 + G13**2 + G21**2 + G22**2 +
-          G23**2 + G31**2 + G32**2 + G33**2)
-    det = jnp.abs(G11 * G22 * G33 - G11 * G23 * G32 -
-                  G12 * G21 * G33 + G12 * G23 * G31 +
-                  G13 * G21 * G32 - G13 * G22 * G31)
+    I1 = (F11**2 + F12**2 + F13**2 +
+          F21**2 + F22**2 + F23**2 +
+          F31**2 + F32**2 + F33**2)
+    det = jnp.abs(+ F11 * F22 * F33 - F11 * F23 * F32
+                  - F12 * F21 * F33 + F12 * F23 * F31
+                  + F13 * F21 * F32 - F13 * F22 * F31)
     W = C1 * (I1 - 3 - 2 * jnp.log(det)) + D1 * (det - 1)**2
     return jnp.sum(W * vol)
