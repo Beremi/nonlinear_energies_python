@@ -1,0 +1,8 @@
+__pycache__/mesh.cpython-311.pyc
+HyperElasticity3D/__pycache__/jax_energy.cpython-311.pyc
+HyperElasticity3D/__pycache__/mesh.cpython-311.pyc
+HyperElasticity3D/__pycache__/rotate_boundary.cpython-311.pyc
+tools/__pycache__/graph_sfd.cpython-311.pyc
+tools/__pycache__/jax_diff.cpython-311.pyc
+tools/__pycache__/minimizers.cpython-311.pyc
+tools/__pycache__/sparse_solvers.cpython-311.pyc
