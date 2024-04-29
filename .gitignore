@@ -10,3 +10,14 @@ pLaplace2D/__pycache__/jax_energy.cpython-311.pyc
 pLaplace2D/__pycache__/mesh.cpython-311.pyc
 GinzburgLandau2D/__pycache__/jax_energy.cpython-311.pyc
 GinzburgLandau2D/__pycache__/mesh.cpython-311.pyc
+GinzburgLandau2D/__pycache__/jax_energy.cpython-312.pyc
+GinzburgLandau2D/__pycache__/mesh.cpython-312.pyc
+HyperElasticity3D/__pycache__/jax_energy.cpython-312.pyc
+HyperElasticity3D/__pycache__/mesh.cpython-312.pyc
+HyperElasticity3D/__pycache__/rotate_boundary.cpython-312.pyc
+pLaplace2D/__pycache__/jax_energy.cpython-312.pyc
+pLaplace2D/__pycache__/mesh.cpython-312.pyc
+tools/__pycache__/graph_sfd.cpython-312.pyc
+tools/__pycache__/jax_diff.cpython-312.pyc
+tools/__pycache__/minimizers.cpython-312.pyc
+tools/__pycache__/sparse_solvers.cpython-312.pyc
